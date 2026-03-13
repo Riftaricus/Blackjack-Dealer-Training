@@ -15,11 +15,11 @@ namespace Blackjack_Dealer_Training.GameLogic
 
     public class Table
     {
-        Shoe shoe;
+        Deck deck;
 
         List<Player> players;
 
-        TableState tableState;
+        TableState tableState { set; get; }
 
         int totalChips;
 
@@ -27,11 +27,26 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public Table()
         {
-            shoe = new Shoe();
+            deck = new Deck();
             players = new List<Player>();
             totalChips = 0;
             totalPlayers = 0;
             tableState = TableState.WaitingForPlayers;
+        }
+
+        public void shuffleDeck()
+        {
+            deck.shuffle();
+        }
+
+        public Card drawCard()
+        {
+            return deck.draw();
+        }
+
+        public void addChips(int chips)
+        {
+            totalChips += chips;
         }
 
         public void stopGame()
