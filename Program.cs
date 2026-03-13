@@ -1,3 +1,5 @@
+using Blackjack_Dealer_Training.GameLogic;
+
 namespace Blackjack_Dealer_Training
 {
     internal static class Program
@@ -6,6 +8,7 @@ namespace Blackjack_Dealer_Training
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
+
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,

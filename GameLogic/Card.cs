@@ -37,8 +37,8 @@ namespace Blackjack_Dealer_Training.GameLogic
             this.suit = suit;
         }
 
-        private Suit suit { get; set; }
-        private Rank rank { get; set; }
+        private Suit suit { get; }
+        private Rank rank { get; }
 
         public int value
         {
