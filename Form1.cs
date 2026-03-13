@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using Blackjack_Dealer_Training.GameLogic;
 
 namespace Blackjack_Dealer_Training
 {
@@ -7,26 +7,11 @@ namespace Blackjack_Dealer_Training
         public Form1()
         {
             InitializeComponent();
+
+            Card card = new(Rank.ACE, Suit.HEARTS);
+
+            label1.Text = card.value.ToString();
         }
 
-        private void testToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dealerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dealCradsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
