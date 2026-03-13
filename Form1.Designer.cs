@@ -29,20 +29,32 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(546, 188);
+            label1.Location = new Point(567, 199);
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 0;
             label1.Text = "label1";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(578, 260);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 1;
+            label2.Text = "label2";
+            label2.Click += label2_Click;
+            // 
             // Form1
             // 
             ClientSize = new Size(1335, 446);
+            Controls.Add(label2);
             Controls.Add(label1);
             Name = "Form1";
             ResumeLayout(false);
@@ -52,5 +64,6 @@
         #endregion
 
         private Label label1;
+        private Label label2;
     }
 }

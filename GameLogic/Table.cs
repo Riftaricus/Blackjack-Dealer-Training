@@ -15,7 +15,7 @@ namespace Blackjack_Dealer_Training.GameLogic
 
     public class Table
     {
-        Deck deck;
+        public Deck deck { get; private set; }
 
         List<Player> players;
 
