@@ -8,6 +8,10 @@ namespace Blackjack_Dealer_Training.GameLogic
     {
         public static Random rng = new Random();
 
+        int angerLevel;
+        int patienceLevel;
+        int riskTolerance;
+
         public string name { get; private set; }
 
         public Hand hand;
@@ -20,6 +24,10 @@ namespace Blackjack_Dealer_Training.GameLogic
             hand = new Hand();
             name = GenerateName();
             money = rng.Next(100, 10000);
+
+            angerLevel = rng.Next(1, 100);
+            patienceLevel = rng.Next(1, 100);
+            riskTolerance = rng.Next(1, 100);
         }
 
         public Player(Hand hand)
@@ -27,6 +35,37 @@ namespace Blackjack_Dealer_Training.GameLogic
             this.hand = hand;
             name = GenerateName();
             money = rng.Next(100, 10000);
+
+            angerLevel = rng.Next(1, 100);
+            patienceLevel = rng.Next(1, 50);
+            riskTolerance = rng.Next(1, 100);
+        }
+
+        public enum PlayerAction
+        {
+            Hit,
+            Stand
+        }
+
+        public PlayerAction getAction()
+        {
+            int value = hand.getValue();
+
+            int risk = 21 - value;
+
+            double baseScore = (angerLevel / 100.0)
+                 * ((101 - patienceLevel) / 100.0)
+                 * ((101 - riskTolerance) / 100.0)
+                 * (risk / 42.0);
+
+            int result = (int)Math.Min(100.0, baseScore * 10000.0 / rng.Next(1, 100));
+
+            if (rng.Next(1, 100) < result)
+            {
+                return PlayerAction.Hit;
+            }
+
+            return PlayerAction.Stand;
         }
 
         public void hit()

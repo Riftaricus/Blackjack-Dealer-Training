@@ -91,6 +91,7 @@
             Controls.Add(title);
             Name = "BlackJackMenu";
             Text = "BlackJackMenu";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)playerCounting).EndInit();
             ResumeLayout(false);
             PerformLayout();

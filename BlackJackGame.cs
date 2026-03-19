@@ -1,5 +1,6 @@
 ﻿using Blackjack_Dealer_Training.GameLogic;
 using System.Numerics;
+using static Blackjack_Dealer_Training.GameLogic.Player;
 
 
 namespace Blackjack_Dealer_Training
@@ -92,6 +93,21 @@ namespace Blackjack_Dealer_Training
         private void shuffleToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             GameController.table.shuffleDeck();
+        }
+
+        private void ask_Click(object sender, EventArgs e)
+        {
+            PlayerAction action = selectedPlayer.getAction();
+
+            switch (action)
+            {
+                case PlayerAction.Hit:
+                    actionAsk.Text = selectedPlayer.name + " wants to hit";
+                    break;
+                case PlayerAction.Stand:
+                    actionAsk.Text = selectedPlayer.name + " wants to stand";
+                    break;
+            }
         }
     }
 }

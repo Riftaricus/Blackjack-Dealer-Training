@@ -31,12 +31,14 @@ namespace Blackjack_Dealer_Training
         private void InitializeComponent()
         {
             deal = new Button();
-            player = new Label();
+            actionAsk = new Label();
             right = new Button();
             left = new Button();
             menuStrip2 = new MenuStrip();
             actionsToolStripMenuItem = new ToolStripMenuItem();
             shuffleToolStripMenuItem = new ToolStripMenuItem();
+            ask = new Button();
+            player = new Label();
             menuStrip2.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,14 +52,13 @@ namespace Blackjack_Dealer_Training
             deal.UseVisualStyleBackColor = true;
             deal.Click += deal_Click;
             // 
-            // player
+            // actionAsk
             // 
-            player.AutoSize = true;
-            player.Location = new Point(369, 233);
-            player.Name = "player";
-            player.Size = new Size(58, 20);
-            player.TabIndex = 1;
-            player.Text = "PLAYER";
+            actionAsk.AutoSize = true;
+            actionAsk.Location = new Point(361, 213);
+            actionAsk.Name = "actionAsk";
+            actionAsk.Size = new Size(0, 20);
+            actionAsk.TabIndex = 1;
             // 
             // right
             // 
@@ -99,18 +100,39 @@ namespace Blackjack_Dealer_Training
             // shuffleToolStripMenuItem
             // 
             shuffleToolStripMenuItem.Name = "shuffleToolStripMenuItem";
-            shuffleToolStripMenuItem.Size = new Size(224, 26);
+            shuffleToolStripMenuItem.Size = new Size(138, 26);
             shuffleToolStripMenuItem.Text = "Shuffle";
             shuffleToolStripMenuItem.Click += shuffleToolStripMenuItem_Click_1;
+            // 
+            // ask
+            // 
+            ask.Location = new Point(349, 291);
+            ask.Name = "ask";
+            ask.Size = new Size(94, 29);
+            ask.TabIndex = 5;
+            ask.Text = "Ask Player";
+            ask.UseVisualStyleBackColor = true;
+            ask.Click += ask_Click;
+            // 
+            // player
+            // 
+            player.AutoSize = true;
+            player.Location = new Point(361, 233);
+            player.Name = "player";
+            player.Size = new Size(58, 20);
+            player.TabIndex = 6;
+            player.Text = "PLAYER";
             // 
             // BlackJackGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(player);
+            Controls.Add(ask);
             Controls.Add(left);
             Controls.Add(right);
-            Controls.Add(player);
+            Controls.Add(actionAsk);
             Controls.Add(deal);
             Controls.Add(menuStrip2);
             MainMenuStrip = menuStrip2;
@@ -135,11 +157,13 @@ namespace Blackjack_Dealer_Training
         private ToolStripMenuItem toolStripMenuItem3;
         private List<Button> buttons;
         private Button deal;
-        private Label player;
+        private Label actionAsk;
         private Button right;
         private Button left;
         private MenuStrip menuStrip2;
         private ToolStripMenuItem actionsToolStripMenuItem;
         private ToolStripMenuItem shuffleToolStripMenuItem;
+        private Button ask;
+        private Label player;
     }
 }
