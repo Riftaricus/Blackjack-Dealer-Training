@@ -1,3 +1,5 @@
+using Blackjack_Dealer_Training.GameLogic;
+
 namespace Blackjack_Dealer_Training
 {
     internal static class Program
@@ -8,12 +10,6 @@ namespace Blackjack_Dealer_Training
         [STAThread]
         static void Main()
         {
-<<<<<<< Updated upstream
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-=======
-
-
             GameController.initializeGame();
             Table table = GameController.table;
 
@@ -32,7 +28,6 @@ namespace Blackjack_Dealer_Training
 
             GameController.table?.addPlayer(new Player());
 
->>>>>>> Stashed changes
             ApplicationConfiguration.Initialize();
             Application.Run(new BlackJackMenu());
         }

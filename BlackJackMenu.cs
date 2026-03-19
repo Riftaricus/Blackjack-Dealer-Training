@@ -17,19 +17,6 @@ namespace Blackjack_Dealer_Training
             InitializeComponent();
         }
 
-        private void playerCounting_ValueChanged(object sender, EventArgs e)
-        {
-            playerCount = (int)playerCounting.Value;
-            if (playerCount > 0)
-            {
-                startButton.Enabled = true;
-            }
-            else
-            {
-                startButton.Enabled = false;
-            }
-        }
-
         private void startButton_Click(object sender, EventArgs e)
         {
             BlackJackGame gameForm = new BlackJackGame(playerCount - 1);

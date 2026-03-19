@@ -52,10 +52,12 @@
             // playerCounting
             // 
             playerCounting.Location = new Point(376, 195);
+            playerCounting.Maximum = new decimal(new int[] { 24, 0, 0, 0 });
+            playerCounting.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             playerCounting.Name = "playerCounting";
             playerCounting.Size = new Size(55, 27);
             playerCounting.TabIndex = 1;
-            playerCounting.ValueChanged += playerCounting_ValueChanged;
+            playerCounting.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // playerAmount
             // 
@@ -68,7 +70,7 @@
             // 
             // startButton
             // 
-            startButton.Enabled = false;
+            startButton.Enabled = true;
             startButton.Location = new Point(355, 228);
             startButton.Name = "startButton";
             startButton.Size = new Size(94, 29);
