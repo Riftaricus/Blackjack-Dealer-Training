@@ -19,7 +19,8 @@ namespace Blackjack_Dealer_Training
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            BlackJackGame gameForm = new BlackJackGame(playerCount - 1);
+            playerCount = (int)playerCounting.Value;
+            BlackJackGame gameForm = new BlackJackGame(playerCount);
             gameForm.Show();
             this.Hide();
         }

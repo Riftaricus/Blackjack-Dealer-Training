@@ -27,7 +27,7 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public Table()
         {
-            deck = new Deck();
+            deck = new Deck(100);
             players = new List<Player>();
             totalChips = 0;
             totalPlayers = 0;

@@ -25,6 +25,15 @@ namespace Blackjack_Dealer_Training
             selectedPlayer = GameController.table.players[0];
 
             update_label();
+
+            foreach (Player player in GameController.table.players)
+            {
+                player.placeRandomBet();
+            }
+
+            update_label();
+
+
         }
 
         private void shuffleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,16 +57,6 @@ namespace Blackjack_Dealer_Training
 
             selectedPlayer = GameController.table.players[index];
 
-            if (selectedPlayer.hand.getValue() == 0)
-            {
-                index--;
-                if (index < 0)
-                {
-                    index = GameController.table.players.Count - 1;
-                }
-                selectedPlayer = GameController.table.players[index];
-            }
-
             update_label();
         }
 
@@ -69,24 +68,18 @@ namespace Blackjack_Dealer_Training
                 index = 0;
             }
 
-
             selectedPlayer = GameController.table.players[index];
-
-            if (selectedPlayer.hand.getValue() == 0)
-            {
-                index++;
-                if (index >= GameController.table.players.Count)
-                {
-                    index = 0;
-                }
-                selectedPlayer = GameController.table.players[index];
-            }
 
             update_label();
         }
 
         private void update_label()
         {
+            int betAmount = 0;
+            foreach (Player player in GameController.table.players)
+            { betAmount += player.currentBet; }
+
+            bet.Text = "Bet: " + betAmount + "$";
             player.Text = selectedPlayer.name + " - " + selectedPlayer.hand.cards.Count + " cards (" + selectedPlayer.hand.getValue() + ")";
         }
 
@@ -108,6 +101,11 @@ namespace Blackjack_Dealer_Training
                     actionAsk.Text = selectedPlayer.name + " wants to stand";
                     break;
             }
+        }
+
+        private void BlackJackGame_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

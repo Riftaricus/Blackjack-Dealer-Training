@@ -42,6 +42,11 @@ namespace Blackjack_Dealer_Training.GameLogic
         {
             int length = cards.Length;
 
+            if (length == 0)
+            {
+                return null;
+            }
+
             Card selectedCard = cards[length - 1];
             cards = cards.Take(cards.Count() - 1).ToArray();
 

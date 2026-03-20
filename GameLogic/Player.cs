@@ -11,23 +11,46 @@ namespace Blackjack_Dealer_Training.GameLogic
         int angerLevel;
         int patienceLevel;
         int riskTolerance;
-
+        Playstyle playstyle;
         public string name { get; private set; }
 
         public Hand hand;
 
         int money;
 
-        int currentBet;
+        public int currentBet;
 
-        public Player() { 
+        public enum Playstyle
+        {
+            RISKY,
+            PATIENT,
+            CHAOS,
+            DEALER,
+            BASIC_STRATEGY,
+            CONSERVATIVE,
+            DRUNK,
+            SUPERSTITIOUS,
+            NONE
+        }
+        public Player()
+        {
             hand = new Hand();
             name = GenerateName();
             money = rng.Next(100, 10000);
 
-            angerLevel = rng.Next(1, 100);
-            patienceLevel = rng.Next(1, 100);
-            riskTolerance = rng.Next(1, 100);
+            angerLevel = rng.Next(30, 100);
+            patienceLevel = rng.Next(10, 70);
+            riskTolerance = rng.Next(1, 80);
+            int random = rng.Next(0, 10);
+            if (random > 8)
+            {
+                playstyle = Playstyle.NONE;
+            }
+            else
+            {
+                playstyle = (Playstyle)random;
+            }
+
         }
 
         public Player(Hand hand)
@@ -36,9 +59,10 @@ namespace Blackjack_Dealer_Training.GameLogic
             name = GenerateName();
             money = rng.Next(100, 10000);
 
-            angerLevel = rng.Next(1, 100);
-            patienceLevel = rng.Next(1, 50);
-            riskTolerance = rng.Next(1, 100);
+            angerLevel = rng.Next(60, 100);
+            patienceLevel = rng.Next(10, 40);
+            riskTolerance = rng.Next(1, 30);
+            playstyle = (Playstyle)rng.Next(0, 3);
         }
 
         public enum PlayerAction
@@ -55,10 +79,85 @@ namespace Blackjack_Dealer_Training.GameLogic
 
             double baseScore = (angerLevel / 100.0)
                  * ((101 - patienceLevel) / 100.0)
-                 * ((101 - riskTolerance) / 100.0)
-                 * (risk / 42.0);
+                 * ((riskTolerance) / 100.0)
+                 * (risk / 84.0);
 
             int result = (int)Math.Min(100.0, baseScore * 10000.0 / rng.Next(1, 100));
+
+            if (playstyle == Playstyle.DEALER)
+            {
+                if (value < 17)
+                {
+                    return PlayerAction.Hit;
+                }
+                else
+                {
+                    return PlayerAction.Stand;
+                }
+            }
+            if (playstyle == Playstyle.RISKY)
+            {
+                result = result * 2;
+            }
+            if (playstyle == Playstyle.PATIENT)
+            {
+                if (value < 16)
+                {
+                    result = result * 2;
+                }
+                else if (value > 18)
+                {
+                    result = Math.Clamp(result / 2, 0, 100);
+                }
+            }
+            if (playstyle == Playstyle.CHAOS)
+            {
+                if (!(value >= 20))
+                {
+                    result = result * 4;
+                }
+            }
+
+            if (playstyle == Playstyle.BASIC_STRATEGY)
+            {
+                if (value <= 11)
+                {
+                    return PlayerAction.Hit;
+                }
+                else
+                {
+                    return PlayerAction.Stand;
+                }
+            }
+
+            if (playstyle == Playstyle.CONSERVATIVE)
+            {
+                if (value <= 14)
+                {
+                    result *= 2;
+                }
+                else
+                {
+                    result /= 2;
+                }
+            }
+
+            if (playstyle == Playstyle.SUPERSTITIOUS)
+            {
+                if (value == 13 || value == 17)
+                {
+                    result = result * 4;
+                }
+                if (value == 2 || value == 4 || value == 6 || value == 8 || value == 10 || value == 12 || value == 14 || value == 16 || value == 18 || value == 20)
+                {
+                    result = Math.Clamp(result / 2, 0, 100);
+                }
+            }
+
+            if (playstyle == Playstyle.DRUNK)
+            {
+                result = rng.Next(0, 100);
+            }
 
             if (rng.Next(1, 100) < result)
             {
@@ -85,7 +184,7 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public void placeRandomBet()
         {
-            int betAmount = rng.Next(1, money);
+            int betAmount = rng.Next(1, money / 200);
             placeBet(betAmount);
         }
 

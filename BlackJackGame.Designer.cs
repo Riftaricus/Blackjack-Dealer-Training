@@ -39,6 +39,7 @@ namespace Blackjack_Dealer_Training
             shuffleToolStripMenuItem = new ToolStripMenuItem();
             ask = new Button();
             player = new Label();
+            bet = new Label();
             menuStrip2.SuspendLayout();
             SuspendLayout();
             // 
@@ -122,12 +123,23 @@ namespace Blackjack_Dealer_Training
             player.Size = new Size(58, 20);
             player.TabIndex = 6;
             player.Text = "PLAYER";
+            player.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // bet
+            // 
+            bet.AutoSize = true;
+            bet.Location = new Point(369, 42);
+            bet.Name = "bet";
+            bet.Size = new Size(29, 20);
+            bet.TabIndex = 7;
+            bet.Text = "0 $";
             // 
             // BlackJackGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(bet);
             Controls.Add(player);
             Controls.Add(ask);
             Controls.Add(left);
@@ -138,6 +150,7 @@ namespace Blackjack_Dealer_Training
             MainMenuStrip = menuStrip2;
             Name = "BlackJackGame";
             Text = "BlackJackGame";
+            Load += BlackJackGame_Load;
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();
             ResumeLayout(false);
@@ -165,5 +178,6 @@ namespace Blackjack_Dealer_Training
         private ToolStripMenuItem shuffleToolStripMenuItem;
         private Button ask;
         private Label player;
+        private Label bet;
     }
 }
