@@ -1,20 +1,27 @@
-﻿namespace Blackjack_Dealer_Training.GameLogic
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Blackjack_Dealer_Training.GameLogic
 {
     public class Hand
     {
-        bool canPlay { get; set; }
+        bool canPlay;
+        int value;
 
-        public List<Card> cards { get; set; }
+        List<Card> cards { get; set; }
         bool hasPassed;
 
         public Hand()
         {
             canPlay = true;
+            value = 0;
             cards = new List<Card>();
             hasPassed = false;
         }
 
-        public int getValue()
+        public void getValue()
         {
             int value = 0;
             int aceAmount = 0;
@@ -32,12 +39,6 @@
                 value -= 10;
                 aceAmount--;
             }
-
-            if (value > 21) {
-                return 0;
-            }
-
-            return value;
         }
 
         public void addCard(Card card)

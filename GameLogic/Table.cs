@@ -17,7 +17,7 @@ namespace Blackjack_Dealer_Training.GameLogic
     {
         public Deck deck { get; private set; }
 
-        public List<Player> players { get; private set; }
+        List<Player> players;
 
         TableState tableState { set; get; }
 
@@ -27,7 +27,7 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public Table()
         {
-            deck = new Deck(100);
+            deck = new Deck();
             players = new List<Player>();
             totalChips = 0;
             totalPlayers = 0;
@@ -65,6 +65,7 @@ namespace Blackjack_Dealer_Training.GameLogic
             }
             players.Add(player);
             totalPlayers++;
+            //totalChips += player.Chips;
         }
         public void addPlayers(List<Player> players)
         {
@@ -78,11 +79,12 @@ namespace Blackjack_Dealer_Training.GameLogic
                 players.Add(player);
             }
             totalPlayers++;
+            //totalChips += player.Chips;
         }
 
         public void startGame()
         {
-            tableState = TableState.DealingCards;
+
         }
     }
 }
