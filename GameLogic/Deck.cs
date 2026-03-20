@@ -42,7 +42,7 @@ namespace Blackjack_Dealer_Training.GameLogic
         {
             int length = cards.Length;
 
-            Card selectedCard = cards[length];
+            Card selectedCard = cards[length - 1];
             cards = cards.Take(cards.Count() - 1).ToArray();
 
             cardsLeft--;
