@@ -8,15 +8,39 @@ namespace Blackjack_Dealer_Training.GameLogic
     {
         public static Table? table;
         public static Dealer? dealer;
+        public static GameOrder currentGameOrder = GameOrder.Inactive;
 
-        //public static Dictionary<char, int> actions = new Dictionary<char, int>()
-        //{
-        //    {'S', 0},
-        //    {'D', 0},
-        //    {'A', 0},
-        //    {'P', 0},
-        //    {'A', 0}
-        //};
+        public enum GameOrder
+        {
+            Shuffle,
+            DealingCards,
+            PlayerTurns,
+            DealerTurn,
+            RoundOver,
+            Inactive
+        }
+
+        public static void switchGameOrder()
+        {
+            int gameOrder = (int)currentGameOrder + 1;
+
+            if (gameOrder > 5)
+            {
+                gameOrder = 0;
+            }
+
+            currentGameOrder = (GameOrder)gameOrder;
+        }
+
+        public static bool checkAction(GameOrder gameOrder)
+        {
+            if (currentGameOrder == gameOrder)
+            {
+                switchGameOrder();
+                return true;
+            }
+            return false;
+        }
 
         public static void initializeGame()
         {

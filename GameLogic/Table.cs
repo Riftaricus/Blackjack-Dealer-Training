@@ -27,7 +27,7 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public Table()
         {
-            deck = new Deck(3);
+            deck = new Deck(5);
             players = new List<Player>();
             totalChips = 0;
             totalPlayers = 0;
@@ -79,12 +79,6 @@ namespace Blackjack_Dealer_Training.GameLogic
                 players.Add(player);
             }
             totalPlayers++;
-            //totalChips += player.Chips;
-        }
-
-        public void startGame()
-        {
-
         }
     }
 }

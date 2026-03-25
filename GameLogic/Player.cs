@@ -31,7 +31,7 @@ namespace Blackjack_Dealer_Training.GameLogic
         {
             hand = new Hand();
             name = GenerateName();
-            money = rng.Next(100, 10000);
+            money = rng.Next(300, 10000);
 
             angerLevel = rng.Next(30, 100);
             patienceLevel = rng.Next(10, 70);
@@ -84,24 +84,24 @@ namespace Blackjack_Dealer_Training.GameLogic
             }
             if (playstyle == Playstyle.RISKY)
             {
-                result = result / 2;
+                result = result * 2;
             }
             if (playstyle == Playstyle.PATIENT)
             {
                 if (value < 16)
                 {
-                    result = result / 2;
+                    result = result * 2;
                 }
                 else if (value > 18)
                 {
-                    result = Math.Clamp(result * 2, 0, 100);
+                    result = result / 2;
                 }
             }
             if (playstyle == Playstyle.CHAOS)
             {
                 if (!(value >= 20))
                 {
-                    result = result / 4;
+                    result = result * 4;
                 }
             }
 

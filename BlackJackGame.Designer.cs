@@ -138,7 +138,7 @@ namespace Blackjack_Dealer_Training
             // cards
             // 
             cards.AutoSize = true;
-            cards.Location = new Point(371, 213);
+            cards.Location = new Point(369, 176);
             cards.Name = "cards";
             cards.Size = new Size(56, 20);
             cards.TabIndex = 8;
