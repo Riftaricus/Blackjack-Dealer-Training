@@ -17,7 +17,7 @@ namespace Blackjack_Dealer_Training
             for (int i = 0; i < playerCount; i++)
             {
                 Player player = new Player();
-
+                
                 GameController.table.addPlayer(player);
             }
             InitializeComponent();
@@ -80,6 +80,7 @@ namespace Blackjack_Dealer_Training
             { betAmount += player.currentBet; }
 
             bet.Text = "Bet: " + betAmount + "$";
+            cards.Text = selectedPlayer.hand.getCards();
             player.Text = selectedPlayer.name + " - " + selectedPlayer.hand.cards.Count + " cards (" + selectedPlayer.hand.getValue() + ")";
         }
 

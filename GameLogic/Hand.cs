@@ -58,6 +58,18 @@ namespace Blackjack_Dealer_Training.GameLogic
             } 
         }
 
+        public string getCards()
+        {
+            string formattedCards = "";
+
+            foreach (Card card in cards)
+            {
+                formattedCards += $"{card.rank} of {card.suit}, ";
+            }
+
+            return formattedCards;
+        }
+
         public void stand()
         {
             hasPassed = true;

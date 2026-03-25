@@ -41,8 +41,14 @@ namespace Blackjack_Dealer_Training.GameLogic
         public Card draw()
         {
             int length = cards.Length;
-
-            Card selectedCard = cards[length - 1];
+            Card selectedCard;
+            try
+            {
+                selectedCard = cards[length - 1];
+            } catch(IndexOutOfRangeException)
+            {
+                return null;
+            }
             cards = cards.Take(cards.Count() - 1).ToArray();
 
             cardsLeft--;

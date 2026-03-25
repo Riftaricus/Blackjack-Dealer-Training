@@ -40,6 +40,7 @@ namespace Blackjack_Dealer_Training
             ask = new Button();
             player = new Label();
             bet = new Label();
+            cards = new Label();
             menuStrip2.SuspendLayout();
             SuspendLayout();
             // 
@@ -118,7 +119,7 @@ namespace Blackjack_Dealer_Training
             // player
             // 
             player.AutoSize = true;
-            player.Location = new Point(361, 233);
+            player.Location = new Point(369, 233);
             player.Name = "player";
             player.Size = new Size(58, 20);
             player.TabIndex = 6;
@@ -134,11 +135,23 @@ namespace Blackjack_Dealer_Training
             bet.TabIndex = 7;
             bet.Text = "0 $";
             // 
+            // cards
+            // 
+            cards.AutoSize = true;
+            cards.Location = new Point(371, 213);
+            cards.Name = "cards";
+            cards.Size = new Size(56, 20);
+            cards.TabIndex = 8;
+            cards.Text = "CARDS";
+            cards.TextAlign = ContentAlignment.MiddleCenter;
+            cards.UseMnemonic = false;
+            // 
             // BlackJackGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cards);
             Controls.Add(bet);
             Controls.Add(player);
             Controls.Add(ask);
@@ -179,5 +192,6 @@ namespace Blackjack_Dealer_Training
         private Button ask;
         private Label player;
         private Label bet;
+        private Label cards;
     }
 }
