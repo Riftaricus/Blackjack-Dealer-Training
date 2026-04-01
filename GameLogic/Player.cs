@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Blackjack_Dealer_Training.GameLogic
 {
-    public class Player
+    public class Player : Character
     {
         public static Random rng = new Random();
 
@@ -12,13 +12,8 @@ namespace Blackjack_Dealer_Training.GameLogic
         int patienceLevel;
         int riskTolerance;
         Playstyle playstyle;
-        public string name { get; private set; }
-
-        public Hand hand;
 
         int money;
-
-        public int currentBet;
 
         public enum Playstyle
         {
@@ -121,16 +116,6 @@ namespace Blackjack_Dealer_Training.GameLogic
             }
 
             return PlayerAction.Stand;
-        }
-
-        public Card hit()
-        {
-            return hand.hit();
-        }
-
-        public void stand()
-        {
-            hand.stand();
         }
 
         public void reset()

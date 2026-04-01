@@ -9,7 +9,7 @@ namespace Blackjack_Dealer_Training
 {
     public partial class BlackJackGame : Form
     {
-        Player selectedPlayer;
+        Character selectedPlayer;
         int index = 0;
         Card lastCard;
 
@@ -23,13 +23,16 @@ namespace Blackjack_Dealer_Training
                 
                 GameController.table.addPlayer(player);
             }
+
+            GameController.table.addPlayer(GameController.dealer);
+
             InitializeComponent();
 
             selectedPlayer = GameController.table.players[0];
 
             update_label();
 
-            foreach (Player player in GameController.table.players)
+            foreach (Character player in GameController.table.players)
             {
                 player.placeRandomBet();
             }
@@ -79,7 +82,7 @@ namespace Blackjack_Dealer_Training
         private void update_label()
         {
             int betAmount = 0;
-            foreach (Player player in GameController.table.players)
+            foreach (Character player in GameController.table.players)
             { betAmount += player.currentBet; }
 
             cardsLeft.Text = "| " + GameController.table.deck.cardsLeft + " Cards left";

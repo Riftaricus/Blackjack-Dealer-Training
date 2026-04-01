@@ -5,34 +5,17 @@ using System.Text;
 
 namespace Blackjack_Dealer_Training.GameLogic
 {
-    public class Dealer
+    public class Dealer : Character
     {
-        Hand hand = new Hand();
-
-        public void Hit(bool face = true)
+        public Dealer()
         {
-            hand.hit();
-        }
-        public void Stand()
-        {
-            hand.stand();
+            name = "Dealer";
+            hand = new Hand();
         }
 
-        public Card dealCard(Player player)
+        public Card dealCard(Character character)
         {
-            return player.hit();
-        }
-
-        public void InitialDeal()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                foreach (Player player in GameController.table.players)
-                    player.hit();
-            }
-
-            Hit();
-            Hit(true);
+            return character.Hit(false);
         }
 
         public void Reset()
