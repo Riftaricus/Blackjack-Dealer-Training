@@ -17,7 +17,7 @@ namespace Blackjack_Dealer_Training.GameLogic
     {
         public Deck deck { get; private set; }
 
-        public List<Player> players;
+        public List<Character> players;
 
         TableState tableState { set; get; }
 
@@ -27,8 +27,8 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public Table()
         {
-            deck = new Deck(3);
-            players = new List<Player>();
+            deck = new Deck(5);
+            players = new List<Character>();
             totalChips = 0;
             totalPlayers = 0;
             tableState = TableState.WaitingForPlayers;
@@ -57,7 +57,7 @@ namespace Blackjack_Dealer_Training.GameLogic
             tableState = TableState.RoundOver;
         }
 
-        public void addPlayer(Player player)
+        public void addPlayer(Character player)
         {
             if (tableState != TableState.WaitingForPlayers)
             {
@@ -79,12 +79,6 @@ namespace Blackjack_Dealer_Training.GameLogic
                 players.Add(player);
             }
             totalPlayers++;
-            //totalChips += player.Chips;
-        }
-
-        public void startGame()
-        {
-
         }
     }
 }

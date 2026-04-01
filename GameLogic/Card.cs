@@ -37,8 +37,8 @@ namespace Blackjack_Dealer_Training.GameLogic
             this.suit = suit;
         }
 
-        private Suit suit { get; }
-        private Rank rank { get; }
+        public Suit suit { get; }
+        public Rank rank { get; }
 
         public int value
         {
@@ -60,10 +60,48 @@ namespace Blackjack_Dealer_Training.GameLogic
             faceUp = !faceUp;
         }
 
+        private String getNumberFromString(Enum rank)
+        {
+            switch (rank)
+            {
+                case Rank.TWO:
+                    return "2";
+                    break;
+                case Rank.THREE:
+                    return "3";
+                    break;
+                case Rank.FOUR:
+                    return "4";
+                    break;
+                case Rank.FIVE:
+                    return "5";
+                    break;
+                case Rank.SIX:
+                    return "6";
+                    break;
+                case Rank.SEVEN:
+                    return "7";
+                    break;
+                case Rank.EIGHT:
+                    return "8";
+                    break;
+                case Rank.NINE:
+                    return "9";
+                    break;
+
+            }
+
+            return rank.ToString();
+        }
+
 
         public override string ToString()
         {
             return $"{rank} of {suit}";
+        }
+        public string ToIntString()
+        {
+            return $"{getNumberFromString(rank)} of {suit}";
         }
     }
 }
