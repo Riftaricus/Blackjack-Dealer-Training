@@ -48,14 +48,16 @@ namespace Blackjack_Dealer_Training.GameLogic
             cards.Add(card);
         }
 
-        public void hit()
+        public Card hit()
         {
             Card? drawnCard = GameController.table?.deck.draw();
 
             if (drawnCard != null)
             {
                 addCard(drawnCard);
-            } 
+            }
+
+            return drawnCard;
         }
 
         public string getCards()

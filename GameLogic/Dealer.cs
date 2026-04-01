@@ -18,9 +18,9 @@ namespace Blackjack_Dealer_Training.GameLogic
             hand.stand();
         }
 
-        public void dealCard(Player player)
+        public Card dealCard(Player player)
         {
-            player.hit();
+            return player.hit();
         }
 
         public void InitialDeal()

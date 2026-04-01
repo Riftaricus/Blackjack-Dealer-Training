@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Blackjack_Dealer_Training.GameLogic
+﻿namespace Blackjack_Dealer_Training.GameLogic
 {
     public class Deck
     {
         Card[] cards { get; set; }
 
-        int cardsLeft { get; set; }
+        public int cardsLeft { get; set; }
 
         private static Random rng = new Random();
 

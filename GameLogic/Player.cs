@@ -123,9 +123,9 @@ namespace Blackjack_Dealer_Training.GameLogic
             return PlayerAction.Stand;
         }
 
-        public void hit()
+        public Card hit()
         {
-            hand.hit();
+            return hand.hit();
         }
 
         public void stand()

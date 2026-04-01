@@ -1,6 +1,8 @@
 ﻿using Blackjack_Dealer_Training.GameLogic;
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Numerics;
 using static Blackjack_Dealer_Training.GameLogic.Player;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Blackjack_Dealer_Training
@@ -9,6 +11,7 @@ namespace Blackjack_Dealer_Training
     {
         Player selectedPlayer;
         int index = 0;
+        Card lastCard;
 
         public BlackJackGame(int playerCount)
         {
@@ -43,7 +46,7 @@ namespace Blackjack_Dealer_Training
 
         private void deal_Click(object sender, EventArgs e)
         {
-            GameController.dealer.dealCard(selectedPlayer);
+            lastCard = GameController.dealer.dealCard(selectedPlayer);
             update_label();
         }
 
@@ -79,9 +82,15 @@ namespace Blackjack_Dealer_Training
             foreach (Player player in GameController.table.players)
             { betAmount += player.currentBet; }
 
+            cardsLeft.Text = "| " + GameController.table.deck.cardsLeft + " Cards left";
             bet.Text = "Bet: " + betAmount + "$";
-            cards.Text = selectedPlayer.hand.getCards();
             player.Text = selectedPlayer.name + " - " + selectedPlayer.hand.cards.Count + " cards (" + selectedPlayer.hand.getValue() + ")";
+
+            string imagePath = lastCard != null
+    ? Path.Combine(System.Windows.Forms.Application.StartupPath, "images", lastCard.ToIntString().ToLower().Replace(" ", "_") + ".png")
+    : "";
+
+            DrawnCard.ImageLocation = imagePath;
         }
 
         private void shuffleToolStripMenuItem_Click_1(object sender, EventArgs e)
