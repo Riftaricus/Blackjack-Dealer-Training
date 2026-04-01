@@ -30,6 +30,7 @@ namespace Blackjack_Dealer_Training
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             deal = new Button();
             actionAsk = new Label();
             right = new Button();
@@ -40,7 +41,12 @@ namespace Blackjack_Dealer_Training
             ask = new Button();
             player = new Label();
             bet = new Label();
+            cardsLeft = new Label();
+            Card = new ImageList(components);
+            imageList1 = new ImageList(components);
+            DrawnCard = new PictureBox();
             menuStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DrawnCard).BeginInit();
             SuspendLayout();
             // 
             // deal
@@ -56,10 +62,11 @@ namespace Blackjack_Dealer_Training
             // actionAsk
             // 
             actionAsk.AutoSize = true;
-            actionAsk.Location = new Point(361, 213);
+            actionAsk.Location = new Point(371, 199);
             actionAsk.Name = "actionAsk";
-            actionAsk.Size = new Size(0, 20);
+            actionAsk.Size = new Size(52, 20);
             actionAsk.TabIndex = 1;
+            actionAsk.Text = "Action";
             // 
             // right
             // 
@@ -118,7 +125,7 @@ namespace Blackjack_Dealer_Training
             // player
             // 
             player.AutoSize = true;
-            player.Location = new Point(361, 233);
+            player.Location = new Point(365, 233);
             player.Name = "player";
             player.Size = new Size(58, 20);
             player.TabIndex = 6;
@@ -128,17 +135,50 @@ namespace Blackjack_Dealer_Training
             // bet
             // 
             bet.AutoSize = true;
-            bet.Location = new Point(369, 42);
+            bet.Location = new Point(349, 38);
             bet.Name = "bet";
             bet.Size = new Size(29, 20);
             bet.TabIndex = 7;
             bet.Text = "0 $";
+            // 
+            // cardsLeft
+            // 
+            cardsLeft.AutoSize = true;
+            cardsLeft.Location = new Point(418, 38);
+            cardsLeft.Name = "cardsLeft";
+            cardsLeft.Size = new Size(25, 20);
+            cardsLeft.TabIndex = 9;
+            cardsLeft.Text = "52";
+            // 
+            // Card
+            // 
+            Card.ColorDepth = ColorDepth.Depth32Bit;
+            Card.ImageSize = new Size(16, 16);
+            Card.Tag = "";
+            Card.TransparentColor = Color.Transparent;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
+            // 
+            // DrawnCard
+            // 
+            DrawnCard.Location = new Point(359, 109);
+            DrawnCard.Name = "DrawnCard";
+            DrawnCard.Size = new Size(75, 87);
+            DrawnCard.SizeMode = PictureBoxSizeMode.Zoom;
+            DrawnCard.TabIndex = 10;
+            DrawnCard.TabStop = false;
             // 
             // BlackJackGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(DrawnCard);
+            Controls.Add(cardsLeft);
             Controls.Add(bet);
             Controls.Add(player);
             Controls.Add(ask);
@@ -153,6 +193,7 @@ namespace Blackjack_Dealer_Training
             Load += BlackJackGame_Load;
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DrawnCard).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -161,14 +202,6 @@ namespace Blackjack_Dealer_Training
 
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem toolStripMenuItem5;
-        private ToolStripMenuItem toolStripMenuItem6;
-        private ToolStripMenuItem toolStripMenuItem7;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem toolStripMenuItem3;
-        private List<Button> buttons;
         private Button deal;
         private Label actionAsk;
         private Button right;
@@ -179,5 +212,9 @@ namespace Blackjack_Dealer_Training
         private Button ask;
         private Label player;
         private Label bet;
+        private Label cardsLeft;
+        private ImageList Card;
+        private ImageList imageList1;
+        private PictureBox DrawnCard;
     }
 }

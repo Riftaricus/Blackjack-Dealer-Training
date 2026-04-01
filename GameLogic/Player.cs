@@ -4,22 +4,35 @@ using System.Text;
 
 namespace Blackjack_Dealer_Training.GameLogic
 {
-    public class Player
+    public class Player : Character
     {
         public static Random rng = new Random();
 
-        public string name { get; private set; }
-
-        Hand hand;
+        int angerLevel;
+        int patienceLevel;
+        int riskTolerance;
+        Playstyle playstyle;
 
         int money;
 
-        int currentBet;
-
-        public Player() { 
+        public enum Playstyle
+        {
+            RISKY,
+            PATIENT,
+            CHAOS,
+            DEALER
+        }
+        public Player()
+        {
             hand = new Hand();
             name = GenerateName();
-            money = rng.Next(100, 10000);
+            money = rng.Next(300, 10000);
+
+            angerLevel = rng.Next(30, 100);
+            patienceLevel = rng.Next(10, 70);
+            riskTolerance = rng.Next(1, 80);
+            playstyle = (Playstyle)rng.Next(0, 3);
+
         }
 
         public Player(Hand hand)
@@ -27,16 +40,82 @@ namespace Blackjack_Dealer_Training.GameLogic
             this.hand = hand;
             name = GenerateName();
             money = rng.Next(100, 10000);
+
+            angerLevel = rng.Next(60, 100);
+            patienceLevel = rng.Next(10, 40);
+            riskTolerance = rng.Next(1, 30);
+            playstyle = (Playstyle)rng.Next(0, 3);
         }
 
-        public void hit()
+        public enum PlayerAction
         {
-            hand.hit();
+            Hit,
+            Stand
         }
 
-        public void stand()
+        public PlayerAction getAction()
         {
-            hand.stand();
+            int value = hand.getValue();
+
+            int risk = 21 - value;
+
+            double baseScore = (angerLevel / 100.0)
+                 * ((101 - patienceLevel) / 100.0)
+                 * ((riskTolerance) / 100.0)
+                 * (risk / 84.0);
+
+            int result = (int)Math.Min(100.0, baseScore * 10000.0 / rng.Next(1, 100));
+
+            if (playstyle == Playstyle.DEALER)
+            {
+                if (value < 17)
+                {
+                    return PlayerAction.Hit;
+                }
+                else
+                {
+                    return PlayerAction.Stand;
+                }
+            }
+            if (playstyle == Playstyle.RISKY)
+            {
+                result = result * 2;
+            }
+            if (playstyle == Playstyle.PATIENT)
+            {
+                if (value < 16)
+                {
+                    result = result * 2;
+                }
+                else if (value > 18)
+                {
+                    result = result / 2;
+                }
+            }
+            if (playstyle == Playstyle.CHAOS)
+            {
+                if (!(value >= 20))
+                {
+                    result = result * 4;
+                }
+            }
+
+            if (value <= 12)
+            {
+                return PlayerAction.Hit;
+            }
+
+            if (value >= 20)
+            {
+                return PlayerAction.Stand;
+            }
+
+            if (rng.Next(1, 100) < result)
+            {
+                return PlayerAction.Hit;
+            }
+
+            return PlayerAction.Stand;
         }
 
         public void reset()
@@ -46,7 +125,7 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public void placeRandomBet()
         {
-            int betAmount = rng.Next(1, money);
+            int betAmount = rng.Next(1, money / 200);
             placeBet(betAmount);
         }
 

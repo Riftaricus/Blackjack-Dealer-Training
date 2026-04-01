@@ -10,7 +10,7 @@ namespace Blackjack_Dealer_Training.GameLogic
         bool canPlay;
         int value;
 
-        List<Card> cards { get; set; }
+        public List<Card> cards { get; set; }
         bool hasPassed;
 
         public Hand()
@@ -21,7 +21,7 @@ namespace Blackjack_Dealer_Training.GameLogic
             hasPassed = false;
         }
 
-        public void getValue()
+        public int getValue()
         {
             int value = 0;
             int aceAmount = 0;
@@ -39,6 +39,8 @@ namespace Blackjack_Dealer_Training.GameLogic
                 value -= 10;
                 aceAmount--;
             }
+
+            return value;
         }
 
         public void addCard(Card card)
@@ -46,14 +48,28 @@ namespace Blackjack_Dealer_Training.GameLogic
             cards.Add(card);
         }
 
-        public void hit()
+        public Card hit()
         {
             Card? drawnCard = GameController.table?.deck.draw();
 
             if (drawnCard != null)
             {
                 addCard(drawnCard);
-            } 
+            }
+
+            return drawnCard;
+        }
+
+        public string getCards()
+        {
+            string formattedCards = "";
+
+            foreach (Card card in cards)
+            {
+                formattedCards += $"{card.rank} of {card.suit}, ";
+            }
+
+            return formattedCards;
         }
 
         public void stand()
