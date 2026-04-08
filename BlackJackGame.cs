@@ -20,7 +20,7 @@ namespace Blackjack_Dealer_Training
             for (int i = 0; i < playerCount; i++)
             {
                 Player player = new Player();
-                
+
                 GameController.table.addPlayer(player);
             }
 
@@ -86,7 +86,6 @@ namespace Blackjack_Dealer_Training
             { betAmount += player.currentBet; }
 
             cardsLeft.Text = "| " + GameController.table.deck.cardsLeft + " Cards left";
-            bet.Text = "Bet: " + betAmount + "$";
             player.Text = selectedPlayer.name + " - " + selectedPlayer.hand.cards.Count + " cards (" + selectedPlayer.hand.getValue() + ")";
 
             string imagePath = lastCard != null
@@ -119,6 +118,22 @@ namespace Blackjack_Dealer_Training
         private void BlackJackGame_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void endGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+
+            this.Hide();
+            BlackJackMenu blackJackMenu = new BlackJackMenu();
+            blackJackMenu.Show();
+            blackJackMenu.Update();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            selectedPlayer.hasWon = checkBox1.Checked;
         }
     }
 }
