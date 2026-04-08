@@ -53,8 +53,7 @@ namespace Blackjack_Dealer_Training.GameLogic
             Stand
         }
 
-        public PlayerAction getAction()
-        {
+        override public PlayerAction getAction()     {
             int value = hand.getValue();
 
             int risk = 21 - value;
@@ -68,14 +67,7 @@ namespace Blackjack_Dealer_Training.GameLogic
 
             if (playstyle == Playstyle.DEALER)
             {
-                if (value < 17)
-                {
-                    return PlayerAction.Hit;
-                }
-                else
-                {
-                    return PlayerAction.Stand;
-                }
+                return base.getAction();
             }
             if (playstyle == Playstyle.RISKY)
             {
