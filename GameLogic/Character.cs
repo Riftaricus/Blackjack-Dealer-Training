@@ -8,6 +8,7 @@ namespace Blackjack_Dealer_Training.GameLogic
 {
     public class Character
     {
+        public PlayerAction action = PlayerAction.Undecided;
 
         public int currentBet = 0;
 

@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Blackjack_Dealer_Training
 {
-    public partial class Form1 : Form
+    public partial class Statistics : Form
     {
-        public Form1()
+        public Statistics()
         {
             InitializeComponent();
         }

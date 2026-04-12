@@ -1,6 +1,6 @@
 ﻿namespace Blackjack_Dealer_Training
 {
-    partial class Form1
+    partial class Statistics
     {
         /// <summary>
         /// Required designer variable.
