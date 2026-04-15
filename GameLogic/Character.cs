@@ -17,6 +17,16 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public bool checkWin()
         {
+            if (hand.getValue() > 21)
+            {
+                return false;
+            }
+
+            if (GameController.dealer.hand.getValue() > 21)
+            {
+                return true;
+            }
+
             if (hand.getValue() > GameController.dealer.hand.getValue())
             {
                 return true;

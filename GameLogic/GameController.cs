@@ -11,7 +11,7 @@ namespace Blackjack_Dealer_Training.GameLogic
         public static GameOrder currentGameOrder = GameOrder.INACTIVE;
 
         public static List<GameOrder> correctGameOrder =
-            new List<GameOrder>() { GameOrder.SETUP,GameOrder.HANDOUT, GameOrder.PLAYERROUND, GameOrder.DEALERROUND };
+            new List<GameOrder>() { GameOrder.SETUP,GameOrder.HANDOUT, GameOrder.PLAYERROUND, GameOrder.DEALERROUND, GameOrder.CHECK };
         public enum GameOrder
         {
             INACTIVE,
@@ -19,6 +19,7 @@ namespace Blackjack_Dealer_Training.GameLogic
             HANDOUT,
             PLAYERROUND,
             DEALERROUND,
+            CHECK,
 
         }
 
@@ -58,6 +59,8 @@ namespace Blackjack_Dealer_Training.GameLogic
         {
             dealer = new Dealer();
             table = new Table();
+
+            currentGameOrder = GameOrder.INACTIVE;
 
             switchGameOrder();
         }

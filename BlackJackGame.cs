@@ -15,7 +15,7 @@ namespace Blackjack_Dealer_Training
 
         public void notify(String action)
         {
-            didWrong.Text = action;
+            didWrong.Text = action + " (" + GameController.currentGameOrder + ")";
         }
 
         public BlackJackGame(int playerCount)
@@ -107,16 +107,24 @@ namespace Blackjack_Dealer_Training
                     notify("You can't deal right now! You may be missing a step.");
                 }
             }
-            else if (GameController.checkActionPeacefully(GameController.GameOrder.DEALERROUND))
+            else if (GameController.checkActionPeacefully(GameController.GameOrder.DEALERROUND) || GameController.checkActionPeacefully(GameController.GameOrder.CHECK))
             {
+                if (selectedPlayer.hand.getValue() >= 17 && GameController.checkActionPeacefully(GameController.GameOrder.DEALERROUND)){
+                    GameController.switchGameOrder();
+                }
+
                 if (selectedPlayer.hand.getValue() < 17)
                 {
                     lastCard = GameController.dealer.dealCard(selectedPlayer);
+                    if (selectedPlayer.hand.getValue() >= 17)
+                    {
+                        GameController.switchGameOrder();
+                    }
                     update_label();
                 }
                 else
                 {
-                    notify("The dealer has 17 or more, they have to stand! Please end the game.");
+                    notify("The dealer has 17 or more, they have to stand! Please assign winners the game.");
                 }
             }
         }
@@ -163,6 +171,19 @@ namespace Blackjack_Dealer_Training
             checkBox1.Checked = selectedPlayer.hasWon;
 
             DrawnCard.ImageLocation = imagePath;
+
+            if (selectedPlayer == GameController.dealer)
+            {
+                checkBox1.Visible = false;
+                actionAsk.Visible = false;
+                ask.Visible = false;
+            }
+            else
+            {
+                checkBox1.Visible = true;
+                actionAsk.Visible = true;
+                ask.Visible = true;
+            }
         }
 
         private void shuffleToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -181,6 +202,29 @@ namespace Blackjack_Dealer_Training
 
         private void ask_Click(object sender, EventArgs e)
         {
+            if (selectedPlayer.action != PlayerAction.Undecided)
+            {
+                notify("You've already asked them for their action!");
+                return;
+            }
+
+            if (GameController.checkActionPeacefully(GameController.GameOrder.PLAYERROUND))
+            {
+                if (selectedPlayer == GameController.dealer)
+                {
+                    notify("You can't ask this player what they want to do right now!");
+                    return;
+                }
+            }
+            if (GameController.checkActionPeacefully(GameController.GameOrder.DEALERROUND))
+            {
+                if (selectedPlayer != GameController.dealer)
+                {
+                    notify("You can't ask this player what they want to do right now!");
+                    return;
+                }
+            }
+
             PlayerAction action = selectedPlayer.getAction();
 
             selectedPlayer.action = action;
@@ -202,12 +246,12 @@ namespace Blackjack_Dealer_Training
 
                 foreach (Character player in GameController.table.players)
                 {
-                    if (player.action == PlayerAction.Stand && player != GameController.dealer)
+                    if (player.action != PlayerAction.Stand && player != GameController.dealer)
                     {
                         allPlayersHavePassed = false;
                     }
                 }
-                if (!allPlayersHavePassed)
+                if (allPlayersHavePassed)
                 {
                     GameController.switchGameOrder();
                 }
@@ -222,19 +266,33 @@ namespace Blackjack_Dealer_Training
         private void endGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+            foreach (Character player in GameController.table.players)
+            {
+                if (player.hasWon != player.hasActuallyWon)
+                {
+                    notify("That's not quite right! " + player.name +  " is incorrectly given a win/loss");
+                    return;
+                }
+            }
+
             GameController.table.players.Clear();
 
             GameController.dealer.hand.cards.Clear();
 
+            GameController.dealer.Reset();
+
+            GameController.table.stopGame();
+
             this.Hide();
             BlackJackMenu blackJackMenu = new BlackJackMenu();
             blackJackMenu.Show();
-            blackJackMenu.Update();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             selectedPlayer.hasWon = checkBox1.Checked;
+
+            selectedPlayer.hasActuallyWon = selectedPlayer.checkWin();
         }
     }
 }
