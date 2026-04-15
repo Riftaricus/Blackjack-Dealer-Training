@@ -13,9 +13,9 @@ namespace Blackjack_Dealer_Training
         int index = 0;
         Card lastCard;
 
-        public void notify(String action)
+        public void notify(String message)
         {
-            didWrong.Text = action + " (" + GameController.currentGameOrder + ")";
+            didWrong.Text = message;
         }
 
         public BlackJackGame(int playerCount)
@@ -73,7 +73,7 @@ namespace Blackjack_Dealer_Training
                         }
                         else
                         {
-                            notify("This player has decided to stand! Please move on to the next player. " + GameController.currentGameOrder);
+                            notify("This player has decided to stand! Please move on to the next player. ");
                             return;
                         }
                     }
