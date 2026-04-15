@@ -8,8 +8,43 @@ namespace Blackjack_Dealer_Training.GameLogic
 {
     public class Character
     {
+        public PlayerAction action = PlayerAction.Undecided;
 
         public int currentBet = 0;
+
+        public bool hasWon = false;
+        public bool hasActuallyWon = false;
+
+        public bool checkWin()
+        {
+            if (hand.getValue() > 21)
+            {
+                return false;
+            }
+
+            if (GameController.dealer.hand.getValue() > 21)
+            {
+                return true;
+            }
+
+            if (hand.getValue() > GameController.dealer.hand.getValue())
+            {
+                return true;
+            } else if (hasBlackjack() && !GameController.dealer.hasBlackjack())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool hasBlackjack()
+        {
+            if (hand.getValue() == 21 && hand.getCards().Length == 2)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public int placeRandomBet()
         {
@@ -29,7 +64,7 @@ namespace Blackjack_Dealer_Training.GameLogic
             hand.stand();
         }
 
-        public PlayerAction getAction()
+        public virtual PlayerAction getAction()
         {
             if (hand.getValue() < 17)
             {

@@ -59,13 +59,8 @@ namespace Blackjack_Dealer_Training.GameLogic
 
         public void addPlayer(Character player)
         {
-            if (tableState != TableState.WaitingForPlayers)
-            {
-                throw new InvalidOperationException("Cannot add players after the game has started.");
-            }
             players.Add(player);
             totalPlayers++;
-            //totalChips += player.Chips;
         }
         public void addPlayers(List<Player> players)
         {

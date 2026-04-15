@@ -38,15 +38,20 @@ namespace Blackjack_Dealer_Training
             menuStrip2 = new MenuStrip();
             actionsToolStripMenuItem = new ToolStripMenuItem();
             shuffleToolStripMenuItem = new ToolStripMenuItem();
+            gameToolStripMenuItem = new ToolStripMenuItem();
+            endGameToolStripMenuItem = new ToolStripMenuItem();
             ask = new Button();
             player = new Label();
-            bet = new Label();
             cardsLeft = new Label();
             Card = new ImageList(components);
             imageList1 = new ImageList(components);
             DrawnCard = new PictureBox();
+            checkBox1 = new CheckBox();
+            statusStrip1 = new StatusStrip();
+            didWrong = new ToolStripStatusLabel();
             menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DrawnCard).BeginInit();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // deal
@@ -91,7 +96,7 @@ namespace Blackjack_Dealer_Training
             // menuStrip2
             // 
             menuStrip2.ImageScalingSize = new Size(20, 20);
-            menuStrip2.Items.AddRange(new ToolStripItem[] { actionsToolStripMenuItem });
+            menuStrip2.Items.AddRange(new ToolStripItem[] { actionsToolStripMenuItem, gameToolStripMenuItem });
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
             menuStrip2.Size = new Size(800, 28);
@@ -112,6 +117,20 @@ namespace Blackjack_Dealer_Training
             shuffleToolStripMenuItem.Text = "Shuffle";
             shuffleToolStripMenuItem.Click += shuffleToolStripMenuItem_Click_1;
             // 
+            // gameToolStripMenuItem
+            // 
+            gameToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { endGameToolStripMenuItem });
+            gameToolStripMenuItem.Name = "gameToolStripMenuItem";
+            gameToolStripMenuItem.Size = new Size(62, 24);
+            gameToolStripMenuItem.Text = "Game";
+            // 
+            // endGameToolStripMenuItem
+            // 
+            endGameToolStripMenuItem.Name = "endGameToolStripMenuItem";
+            endGameToolStripMenuItem.Size = new Size(160, 26);
+            endGameToolStripMenuItem.Text = "End Game";
+            endGameToolStripMenuItem.Click += endGameToolStripMenuItem_Click;
+            // 
             // ask
             // 
             ask.Location = new Point(349, 291);
@@ -131,15 +150,6 @@ namespace Blackjack_Dealer_Training
             player.TabIndex = 6;
             player.Text = "PLAYER";
             player.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // bet
-            // 
-            bet.AutoSize = true;
-            bet.Location = new Point(349, 38);
-            bet.Name = "bet";
-            bet.Size = new Size(29, 20);
-            bet.TabIndex = 7;
-            bet.Text = "0 $";
             // 
             // cardsLeft
             // 
@@ -172,14 +182,43 @@ namespace Blackjack_Dealer_Training
             DrawnCard.TabIndex = 10;
             DrawnCard.TabStop = false;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(349, 326);
+            checkBox1.Name = "checkBox1";
+            checkBox1.RightToLeft = RightToLeft.No;
+            checkBox1.Size = new Size(97, 24);
+            checkBox1.TabIndex = 11;
+            checkBox1.Text = "Has Won?";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { didWrong });
+            statusStrip1.Location = new Point(0, 426);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(800, 24);
+            statusStrip1.TabIndex = 12;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // didWrong
+            // 
+            didWrong.Name = "didWrong";
+            didWrong.Size = new Size(0, 18);
+            didWrong.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // BlackJackGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(statusStrip1);
+            Controls.Add(checkBox1);
             Controls.Add(DrawnCard);
             Controls.Add(cardsLeft);
-            Controls.Add(bet);
             Controls.Add(player);
             Controls.Add(ask);
             Controls.Add(left);
@@ -194,6 +233,8 @@ namespace Blackjack_Dealer_Training
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DrawnCard).EndInit();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -211,10 +252,14 @@ namespace Blackjack_Dealer_Training
         private ToolStripMenuItem shuffleToolStripMenuItem;
         private Button ask;
         private Label player;
-        private Label bet;
         private Label cardsLeft;
         private ImageList Card;
         private ImageList imageList1;
         private PictureBox DrawnCard;
+        private ToolStripMenuItem gameToolStripMenuItem;
+        private ToolStripMenuItem endGameToolStripMenuItem;
+        private CheckBox checkBox1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel didWrong;
     }
 }
