@@ -50,7 +50,8 @@ namespace Blackjack_Dealer_Training.GameLogic
         public enum PlayerAction
         {
             Hit,
-            Stand
+            Stand,
+            Undecided
         }
 
         override public PlayerAction getAction()     {

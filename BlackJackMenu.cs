@@ -12,8 +12,6 @@ namespace Blackjack_Dealer_Training
     public partial class BlackJackMenu : Form
     {
         int playerCount = 0;
-
-        int correctPercentage = 0;
         List<GameController.GameOrder> wrongSteps = new List<GameController.GameOrder>();
 
         public BlackJackMenu()
@@ -21,16 +19,11 @@ namespace Blackjack_Dealer_Training
             InitializeComponent();
         }
 
-        private void update(int correctPercentage, List<GameController.GameOrder> wrongSteps)
-        {
-            this.correctPercentage = correctPercentage;
-            this.wrongSteps = wrongSteps;
-        }
-
         private void startButton_Click(object sender, EventArgs e)
         {
+            GameController.initializeGame();
             playerCount = (int)playerCounting.Value;
-            BlackJackGame gameForm = new BlackJackGame(playerCount - 1);
+            BlackJackGame gameForm = new BlackJackGame(playerCount);
             gameForm.Show();
             this.Hide();
         }
