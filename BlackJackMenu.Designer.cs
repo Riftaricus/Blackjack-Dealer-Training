@@ -32,7 +32,6 @@
             playerCounting = new NumericUpDown();
             playerAmount = new Label();
             startButton = new Button();
-            stats = new Button();
             ((System.ComponentModel.ISupportInitialize)playerCounting).BeginInit();
             SuspendLayout();
             // 
@@ -79,22 +78,12 @@
             startButton.UseVisualStyleBackColor = true;
             startButton.Click += startButton_Click;
             // 
-            // stats
-            // 
-            stats.Location = new Point(355, 263);
-            stats.Name = "stats";
-            stats.Size = new Size(94, 29);
-            stats.TabIndex = 4;
-            stats.Text = "View Stats";
-            stats.UseVisualStyleBackColor = true;
-            // 
             // BlackJackMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
-            Controls.Add(stats);
             Controls.Add(startButton);
             Controls.Add(playerAmount);
             Controls.Add(playerCounting);
@@ -112,6 +101,5 @@
         private NumericUpDown playerCounting;
         private Label playerAmount;
         private Button startButton;
-        private Button stats;
     }
 }

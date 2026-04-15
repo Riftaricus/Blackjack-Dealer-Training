@@ -13,9 +13,9 @@ namespace Blackjack_Dealer_Training
         int index = 0;
         Card lastCard;
 
-        public void notify(String action)
+        public void notify(String message)
         {
-            didWrong.Text = action + " (" + GameController.currentGameOrder + ")";
+            didWrong.Text = message;
         }
 
         public BlackJackGame(int playerCount)
@@ -73,7 +73,7 @@ namespace Blackjack_Dealer_Training
                         }
                         else
                         {
-                            notify("This player has decided to stand! Please move on to the next player. " + GameController.currentGameOrder);
+                            notify("This player has decided to stand! Please move on to the next player. ");
                             return;
                         }
                     }
@@ -246,7 +246,7 @@ namespace Blackjack_Dealer_Training
 
                 foreach (Character player in GameController.table.players)
                 {
-                    if (player.action != PlayerAction.Stand && player != GameController.dealer)
+                    if (player.action != PlayerAction.Stand && player != GameController.dealer || player.hand.getValue() > 21)
                     {
                         allPlayersHavePassed = false;
                     }
@@ -268,6 +268,8 @@ namespace Blackjack_Dealer_Training
 
             foreach (Character player in GameController.table.players)
             {
+                player.checkWin();
+
                 if (player.hasWon != player.hasActuallyWon)
                 {
                     notify("That's not quite right! " + player.name +  " is incorrectly given a win/loss");
