@@ -246,7 +246,7 @@ namespace Blackjack_Dealer_Training
 
                 foreach (Character player in GameController.table.players)
                 {
-                    if (player.action != PlayerAction.Stand && player != GameController.dealer)
+                    if (player.action != PlayerAction.Stand && player != GameController.dealer || player.hand.getValue() > 21)
                     {
                         allPlayersHavePassed = false;
                     }
@@ -268,6 +268,8 @@ namespace Blackjack_Dealer_Training
 
             foreach (Character player in GameController.table.players)
             {
+                player.checkWin();
+
                 if (player.hasWon != player.hasActuallyWon)
                 {
                     notify("That's not quite right! " + player.name +  " is incorrectly given a win/loss");
