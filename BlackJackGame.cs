@@ -246,14 +246,16 @@ namespace Blackjack_Dealer_Training
 
                 foreach (Character player in GameController.table.players)
                 {
-                    if (player.action != PlayerAction.Stand && player != GameController.dealer || player.hand.getValue() > 21)
+                    if (player == GameController.dealer) continue;
+
+                    bool isFinished =
+                        player.action == PlayerAction.Stand ||
+                        player.hand.getValue() > 21;
+
+                    if (!isFinished)
                     {
                         allPlayersHavePassed = false;
                     }
-                }
-                if (allPlayersHavePassed)
-                {
-                    GameController.switchGameOrder();
                 }
             }
         }
