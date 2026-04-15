@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +8,6 @@ namespace Blackjack_Dealer_Training.GameLogic
     public class Hand
     {
         bool canPlay;
-        int value;
 
         public List<Card> cards { get; set; }
         bool hasPassed;
@@ -16,7 +15,6 @@ namespace Blackjack_Dealer_Training.GameLogic
         public Hand()
         {
             canPlay = true;
-            value = 0;
             cards = new List<Card>();
             hasPassed = false;
         }
@@ -70,6 +68,11 @@ namespace Blackjack_Dealer_Training.GameLogic
             }
 
             return formattedCards;
+        }
+
+        public List<Card> getRawCards()
+        {
+            return cards;
         }
 
         public void stand()

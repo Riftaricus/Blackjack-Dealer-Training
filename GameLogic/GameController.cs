@@ -11,13 +11,15 @@ namespace Blackjack_Dealer_Training.GameLogic
         public static GameOrder currentGameOrder = GameOrder.INACTIVE;
 
         public static List<GameOrder> correctGameOrder =
-            new List<GameOrder>() { GameOrder.SETUP, GameOrder.START, GameOrder.ROUND };
+            new List<GameOrder>() { GameOrder.SETUP,GameOrder.HANDOUT, GameOrder.PLAYERROUND, GameOrder.DEALERROUND, GameOrder.CHECK };
         public enum GameOrder
         {
             INACTIVE,
             SETUP,
-            START,
-            ROUND,
+            HANDOUT,
+            PLAYERROUND,
+            DEALERROUND,
+            CHECK,
 
         }
 
@@ -33,6 +35,7 @@ namespace Blackjack_Dealer_Training.GameLogic
             currentGameOrder = correctGameOrder[gameOrder];
         }
 
+
         public static bool checkAction(GameOrder gameOrder)
         {
             if (currentGameOrder == gameOrder)
@@ -43,10 +46,23 @@ namespace Blackjack_Dealer_Training.GameLogic
             return false;
         }
 
+        public static bool checkActionPeacefully(GameOrder gameOrder)
+        {
+            if (currentGameOrder == gameOrder)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static void initializeGame()
         {
             dealer = new Dealer();
             table = new Table();
+
+            currentGameOrder = GameOrder.INACTIVE;
+
+            switchGameOrder();
         }
     }
 }

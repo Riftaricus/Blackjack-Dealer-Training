@@ -47,8 +47,11 @@ namespace Blackjack_Dealer_Training
             imageList1 = new ImageList(components);
             DrawnCard = new PictureBox();
             checkBox1 = new CheckBox();
+            statusStrip1 = new StatusStrip();
+            didWrong = new ToolStripStatusLabel();
             menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DrawnCard).BeginInit();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // deal
@@ -191,11 +194,28 @@ namespace Blackjack_Dealer_Training
             checkBox1.UseVisualStyleBackColor = true;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { didWrong });
+            statusStrip1.Location = new Point(0, 426);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(800, 24);
+            statusStrip1.TabIndex = 12;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // didWrong
+            // 
+            didWrong.Name = "didWrong";
+            didWrong.Size = new Size(0, 18);
+            didWrong.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // BlackJackGame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(statusStrip1);
             Controls.Add(checkBox1);
             Controls.Add(DrawnCard);
             Controls.Add(cardsLeft);
@@ -213,6 +233,8 @@ namespace Blackjack_Dealer_Training
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DrawnCard).EndInit();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,5 +259,7 @@ namespace Blackjack_Dealer_Training
         private ToolStripMenuItem gameToolStripMenuItem;
         private ToolStripMenuItem endGameToolStripMenuItem;
         private CheckBox checkBox1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel didWrong;
     }
 }
