@@ -113,7 +113,7 @@ namespace Blackjack_Dealer_Training
                     GameController.switchGameOrder();
                 }
 
-                if (selectedPlayer.hand.getValue() < 17)
+                else if (selectedPlayer.hand.getValue() < 17)
                 {
                     lastCard = GameController.dealer.dealCard(selectedPlayer);
                     if (selectedPlayer.hand.getValue() >= 17)
@@ -139,6 +139,8 @@ namespace Blackjack_Dealer_Training
 
             selectedPlayer = GameController.table.players[index];
 
+            lastCard = null;
+
             update_label();
         }
 
@@ -151,6 +153,8 @@ namespace Blackjack_Dealer_Training
             }
 
             selectedPlayer = GameController.table.players[index];
+
+            lastCard = null;
 
             update_label();
         }
@@ -239,7 +243,7 @@ namespace Blackjack_Dealer_Training
                     break;
             }
 
-            if (GameController.currentGameOrder == GameController.GameOrder.PLAYERROUND)
+            if (GameController.checkActionPeacefully(GameController.GameOrder.PLAYERROUND))
             {
 
                 bool allPlayersHavePassed = true;
@@ -257,6 +261,10 @@ namespace Blackjack_Dealer_Training
                         allPlayersHavePassed = false;
                     }
                 }
+                if (allPlayersHavePassed)
+                {
+                    GameController.switchGameOrder();
+                }
             }
         }
 
@@ -270,11 +278,10 @@ namespace Blackjack_Dealer_Training
 
             foreach (Character player in GameController.table.players)
             {
-                player.checkWin();
-
+                player.hasActuallyWon = player.checkWin();
                 if (player.hasWon != player.hasActuallyWon)
                 {
-                    notify("That's not quite right! " + player.name +  " is incorrectly given a win/loss");
+                    notify("That's not quite right! " + player.name + " is incorrectly given a win/loss");
                     return;
                 }
             }
@@ -295,8 +302,6 @@ namespace Blackjack_Dealer_Training
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             selectedPlayer.hasWon = checkBox1.Checked;
-
-            selectedPlayer.hasActuallyWon = selectedPlayer.checkWin();
         }
     }
 }
